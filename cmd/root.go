@@ -21,6 +21,12 @@ const (
 	longAppDesc  = "K9s is a CLI to view and manage your Kubernetes clusters."
 )
 
+//判断 Config是否实现了 KubeSettings  接口
+//It's easier to read as two lines:
+//var dummy *T = nil
+//var _ I = dummy // Verify that *T implements I.
+//(*T)(nil) just means nil of type *T. You can't just write var _ I = nil because the whole purpose of this is to ask the compiler if *T implements I and plain nil would mean nil of type I.
+//Another way to write it that is not quite equivalent but is easier to read is var _ I = new(T) (this makes and throws away the T).
 var _ config.KubeSettings = (*client.Config)(nil)
 
 var (
